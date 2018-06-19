@@ -26,23 +26,23 @@
         direccion VARCHAR(50) NOT NULL,
         correo VARCHAR(30),
         activo boolean NOT NULL DEFAULT true,
-        creado DATETIME NOT NULL DEFAULT GETDATE(),
-        actualizado DATETIME NOT NULL DEFAULT GETDATE(),
-        eliminado DATE ,
+        creado TIMESTAMP NOT NULL DEFAULT NOW(),
+        actualizado TIMESTAMP NOT NULL DEFAULT NOW(),
+        eliminado TIMESTAMP ,
         CONSTRAINT pk_proveedores PRIMARY KEY(cod_proveedor)
     );
 
     CREATE TABLE compras (
-        id_compra IDENTITY(1,1),
+        id_compra SERIAL,
         registro_compra CHAR(8) NOT NULL,
-        fecha_compra DATETIME NOT NULL DEFAULT GETDATE(),
+        fecha_compra TIMESTAMP NOT NULL DEFAULT NOW(),
         detalle VARCHAR(100),
         CONSTRAINT pk_compras PRIMARY KEY(id_compra),
         CONSTRAINT unique_registro_compra UNIQUE(registro_compra)
     );
 
     CREATE TABLE proveedor_compra(
-        id_proveedor_compra IDENTITY(1,1),
+        id_proveedor_compra SERIAL,
         registro_compra CHAR(8) NOT NULL,
         cod_proveedor CHAR(5) NOT NULL,
         CONSTRAINT pk_proveedor_compra PRIMARY KEY (id_proveedor_compra,registro_compra),
@@ -56,27 +56,28 @@
         cod_producto CHAR(5),
         nombre VARCHAR(30) NOT NULL,
         activo BOOLEAN NOT NULL DEFAULT true,
-        creado DATETIME NOT NULL DEFAULT GETDATE(),
-        actualizado DATETIME NOT NULL DEFAULT GETDATE(),
-        eliminado DATETIME,
+        creado TIMESTAMP NOT NULL DEFAULT NOW(),
+        actualizado TIMESTAMP NOT NULL DEFAULT NOW(),
+        eliminado TIMESTAMP,
         CONSTRAINT pk_productos PRIMARY KEY(cod_producto),
         CONSTRAINT unique_cod_producto UNIQUE(cod_producto)
 
     );
 
     CREATE TABLE compra_productos(
-        id_compra_producto IDENTITY(1,1) ,
+        id_compra_producto SERIAL ,
         registro_compra CHAR(8) NOT NULL,
         cod_producto CHAR(5) NOT NULL,
         cantidad INT NOT NULL,
         CONSTRAINT pk_compra_productos PRIMARY KEY (id_compra_producto),
         CONSTRAINT fk_CP_producto FOREIGN KEY(cod_producto) REFERENCES productos(cod_producto),
-        CONSTRAINT fk_CP_compra FOREIGN KEY(id_compra) REFERENCES compras(id_compra),
-        CONSTRAINT unique_compra_producto UNIQUE(id_compra,cod_producto)
+        CONSTRAINT fk_CP_compra FOREIGN KEY(registro_compra) REFERENCES compras(registro_compra),
+        CONSTRAINT unique_compra_producto_cod_producto UNIQUE(cod_producto),
+        CONSTRAINT unique_compra_producto UNIQUE(registro_compra,cod_producto)
     );
 
     CREATE TABLE existencias(
-        id_existencia IDENTITY(1,1),
+        id_existencia SERIAL,
         cantidad INT NOT NULL,
         cod_producto CHAR(5) NOT NULL,
         CONSTRAINT pk_existencias  PRIMARY KEY(id_existencia),
@@ -85,18 +86,18 @@
     );
 
     CREATE TABLE recetas(
-        id_receta IDENTITY(1,1),
+        id_receta SERIAL,
         nombre VARCHAR(30) NOT NULL,
         detalles VARCHAR(100) NOT NULL,
         activa BOOLEAN NOT NULL DEFAULT true,
-        creada DATETIME NOT NULL DEFAULT GETDATE(),
-        actualizada DATETIME NOT NULL DEFAULT GETDATE(),
-        eliminada DATE,
+        creada TIMESTAMP NOT NULL DEFAULT NOW(),
+        actualizada TIMESTAMP NOT NULL DEFAULT NOW(),
+        eliminada TIMESTAMP,
         CONSTRAINT pk_receta PRIMARY KEY(id_receta)
     );
 
     CREATE TABLE receta_producto(
-        id_receta_producto IDENTITY(1,1),
+        id_receta_producto SERIAL,
         id_receta INT NOT NULL,
         cod_producto CHAR(5) NOT NULL,
         cantidad int NOT NULL,
@@ -107,19 +108,19 @@
     );
 
     CREATE TABLE menus(
-        id_menu IDENTITY(1,1),
+        id_menu SERIAL,
         nombre VARCHAR(35) NOT NULL,
         detalles VARCHAR(50),
         precio money NOT NULL,
         activo BOOLEAN NOT NULL DEFAULT true,
-        creado DATETIME NOT NULL DEFAULT GETDATE(),
-        actualizado DATETIME NOT NULL DEFAULT GETDATE(),
-        eliminado DATE,
+        creado TIMESTAMP NOT NULL DEFAULT NOW(),
+        actualizado TIMESTAMP NOT NULL DEFAULT NOW(),
+        eliminado TIMESTAMP,
         CONSTRAINT pk_menus PRIMARY KEY(id_menu) 
     );
 
     CREATE TABLE menu_receta(
-        id_menu_receta IDENTITY(1,1),
+        id_menu_receta SERIAL,
         id_receta INT NOT NULL,
         id_menu INT NOT NULL,
         CONSTRAINT pk_menu_receta PRIMARY KEY(id_menu_receta),
@@ -129,9 +130,9 @@
     );
 
     CREATE TABLE ventas(
-        id_venta IDENTITY(1,1),
+        id_venta SERIAL,
         registro_venta CHAR(8) NOT NULL,
-        fecha DATETIME NOT NULL DEFAULT GETDATE(),
+        fecha TIMESTAMP NOT NULL DEFAULT NOW(),
         detalle VARCHAR(50) NOT NULL,
         CONSTRAINT pk_ventas PRIMARY KEY(id_venta),
         CONSTRAINT unique_registro_venta UNIQUE(registro_venta)
@@ -139,7 +140,7 @@
 
 
     CREATE TABLE venta_menus(
-        id_venta_menu IDENTITY(1,1),
+        id_venta_menu SERIAL,
         id_menu INT NOT NULL,
         registro_venta CHAR(8) NOT NULL,
         cantidad INT NOT NULL,
@@ -151,10 +152,10 @@
 
 
     CREATE TABLE facturas(
-        id_factura IDENTITY(1,1),
+        id_factura SERIAL,
         num_factura CHAR(8) NOT NULL,
         correlativo_factura CHAR(10) NOT NULL,
-        fecha_factura DATETIME NOT NULL DEFAULT GETDATE(),
+        fecha_factura TIMESTAMP NOT NULL DEFAULT NOW(),
         iva INT NOT NULL,
         detalles_f VARCHAR(50) NOT NULL,
         CONSTRAINT pk_facturas PRIMARY KEY(id_factura),
@@ -163,7 +164,7 @@
     );
 
     CREATE TABLE factura_compras(
-        id_factura_compra IDENTITY(1,1),
+        id_factura_compra SERIAL,
         id_factura INT NOT NULL,
         id_compra INT NOT NULL,
         CONSTRAINT pk_facturas_compras PRIMARY KEY(id_factura_compra),
@@ -173,7 +174,7 @@
     );
 
     CREATE TABLE factura_ventas(
-        id_factura_venta IDENTITY(1,1),
+        id_factura_venta SERIAL,
         id_factura INT NOT NULL,
         id_venta INT NOT NULL,
         CONSTRAINT pk_facturas_ventas PRIMARY KEY(id_factura_venta),
@@ -189,17 +190,17 @@
         nombre VARCHAR(20) NOT NULL,
         apellido VARCHAR(20) NOT NULL,
         dui CHAR(11) NOT NULL,
-        f_nacimiemto DATE NOT NULL,
+        f_nacimiemto TIMESTAMP NOT NULL,
         direccion VARCHAR(50) NOT NULL,
         activo BOOLEAN NOT NULL DEFAULT true,
-        creado DATETIME NOT NULL DEFAULT GETDATE(),
-        actualizado DATETIME NOT NULL DEFAULT GETDATE(),
-        eliminado DATE,
+        creado TIMESTAMP NOT NULL DEFAULT NOW(),
+        actualizado TIMESTAMP NOT NULL DEFAULT NOW(),
+        eliminado TIMESTAMP,
         CONSTRAINT pk_empleado PRIMARY KEY(cod_empleado)
     );
 
     CREATE TABLE empleado_venta(
-        id_empleado_venta IDENTITY(1,1),
+        id_empleado_venta SERIAL,
         id_venta INT NOT NULL,
         cod_empleado CHAR(5) NOT NULL,
         CONSTRAINT pk_empleado_venta PRIMARY KEY(id_empleado_venta),
