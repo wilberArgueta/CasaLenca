@@ -1,18 +1,17 @@
 package com.casalenca.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
-public class MenusModel {
+public class ProductosModel {
 
-	private int idMenu;
+	private char[] codProducto;
 
 	private String nombre;
 
-	private String detalles;
+	private String medida;
 
-	private String precio;
-
-	private Boolean activo;
+	private boolean activo;
 
 	private LocalDate creado;
 
@@ -20,28 +19,27 @@ public class MenusModel {
 
 	private LocalDate eliminado;
 
-	public MenusModel() {
-
+	public ProductosModel() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public MenusModel(int idMenu, String nombre, String detalles, String precio, Boolean activo, LocalDate creado,
+	public ProductosModel(char[] codProducto, String nombre, String medida, boolean activo, LocalDate creado,
 			LocalDate actualizado, LocalDate eliminado) {
-		this.idMenu = idMenu;
+		this.codProducto = codProducto;
 		this.nombre = nombre;
-		this.detalles = detalles;
-		this.precio = precio;
+		this.medida = medida;
 		this.activo = activo;
 		this.creado = creado;
 		this.actualizado = actualizado;
 		this.eliminado = eliminado;
 	}
 
-	public int getIdMenu() {
-		return idMenu;
+	public char[] getCodProducto() {
+		return codProducto;
 	}
 
-	public void setIdMenu(int idMenu) {
-		this.idMenu = idMenu;
+	public void setCodProducto(char[] codProducto) {
+		this.codProducto = codProducto;
 	}
 
 	public String getNombre() {
@@ -52,27 +50,19 @@ public class MenusModel {
 		this.nombre = nombre;
 	}
 
-	public String getDetalles() {
-		return detalles;
+	public String getMedida() {
+		return medida;
 	}
 
-	public void setDetalles(String detalles) {
-		this.detalles = detalles;
+	public void setMedida(String medida) {
+		this.medida = medida;
 	}
 
-	public String getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(String precio) {
-		this.precio = precio;
-	}
-
-	public Boolean getActivo() {
+	public boolean isActivo() {
 		return activo;
 	}
 
-	public void setActivo(Boolean activo) {
+	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
 
@@ -102,8 +92,8 @@ public class MenusModel {
 
 	@Override
 	public String toString() {
-		return "Menus [idMenu=" + idMenu + ", nombre=" + nombre + ", detalles=" + detalles + ", precio=" + precio
-				+ ", activo=" + activo + ", creado=" + creado + ", actualizado=" + actualizado + ", eliminado="
+		return "ProductosModel [codProducto=" + Arrays.toString(codProducto) + ", nombre=" + nombre + ", medida="
+				+ medida + ", activo=" + activo + ", creado=" + creado + ", actualizado=" + actualizado + ", eliminado="
 				+ eliminado + "]";
 	}
 

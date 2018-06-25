@@ -1,21 +1,21 @@
 package com.casalenca.model;
 
-import java.util.Arrays;
-
 public class ExistenciasModel {
 
 	private int idExistencias;
+
 	private int cantidad;
-	private char[] codProducto;
+
+	private ProductosModel productos;
 
 	public ExistenciasModel() {
 
 	}
 
-	public ExistenciasModel(int idExistencias, int cantidad, char[] codProducto) {
+	public ExistenciasModel(int idExistencias, int cantidad) {
 		this.idExistencias = idExistencias;
 		this.cantidad = cantidad;
-		this.codProducto = codProducto;
+
 	}
 
 	public int getIdExistencias() {
@@ -34,18 +34,18 @@ public class ExistenciasModel {
 		this.cantidad = cantidad;
 	}
 
-	public char[] getCodProducto() {
-		return codProducto;
+	public ProductosModel getProductos() {
+		return productos;
 	}
 
-	public void setCodProducto(char[] codProducto) {
-		this.codProducto = codProducto;
+	public void setProductos(ProductosModel productos) {
+		this.productos = productos;
 	}
 
 	@Override
 	public String toString() {
-		return "ExistenciasModel [idExistencias=" + idExistencias + ", cantidad=" + cantidad + ", codProducto="
-				+ Arrays.toString(codProducto) + "]";
+		return "Existencias [idExistencias=" + idExistencias + ", cantidad=" + cantidad + ", codProducto="
+				+ ", productos=" + productos + "]";
 	}
 
 }

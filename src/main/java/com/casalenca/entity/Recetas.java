@@ -9,25 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "menus")
-public class Menus {
+@Table(name = "recetas")
+public class Recetas {
 
 	@Id
-	@Column(name = "id_menu", nullable = false)
 	@GeneratedValue
-	private int idMenu;
+	@Column(name = "id_receta")
+	private int idReceta;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "detalles", nullable = false)
-	private String detalles;
+	@Column(name = "detalle", nullable = false)
+	private String detalle;
 
-	@Column(name = "precio", nullable = false)
-	private String precio;
-
-	@Column(name = "activo", nullable = false)
-	private Boolean activo = true;
+	@Column(name = "activa", nullable = false)
+	private boolean activa = true;
 
 	@Column(name = "creado", nullable = false)
 	private LocalDate creado = LocalDate.now();
@@ -38,28 +35,27 @@ public class Menus {
 	@Column(name = "eliminado")
 	private LocalDate eliminado;
 
-	public Menus() {
-
+	public Recetas() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Menus(int idMenu, String nombre, String detalles, String precio, Boolean activo, LocalDate creado,
-			LocalDate actualizado, LocalDate eliminado) {
-		this.idMenu = idMenu;
+	public Recetas(int idReceta, String nombre, String detalle, boolean activa, LocalDate creado, LocalDate actualizado,
+			LocalDate eliminado) {
+		this.idReceta = idReceta;
 		this.nombre = nombre;
-		this.detalles = detalles;
-		this.precio = precio;
-		this.activo = activo;
+		this.detalle = detalle;
+		this.activa = activa;
 		this.creado = creado;
 		this.actualizado = actualizado;
 		this.eliminado = eliminado;
 	}
 
-	public int getIdMenu() {
-		return idMenu;
+	public int getIdReceta() {
+		return idReceta;
 	}
 
-	public void setIdMenu(int idMenu) {
-		this.idMenu = idMenu;
+	public void setIdReceta(int idReceta) {
+		this.idReceta = idReceta;
 	}
 
 	public String getNombre() {
@@ -70,28 +66,20 @@ public class Menus {
 		this.nombre = nombre;
 	}
 
-	public String getDetalles() {
-		return detalles;
+	public String getDetalle() {
+		return detalle;
 	}
 
-	public void setDetalles(String detalles) {
-		this.detalles = detalles;
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
 	}
 
-	public String getPrecio() {
-		return precio;
+	public boolean isActiva() {
+		return activa;
 	}
 
-	public void setPrecio(String precio) {
-		this.precio = precio;
-	}
-
-	public Boolean getActivo() {
-		return activo;
-	}
-
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
+	public void setActiva(boolean activa) {
+		this.activa = activa;
 	}
 
 	public LocalDate getCreado() {
@@ -120,9 +108,8 @@ public class Menus {
 
 	@Override
 	public String toString() {
-		return "Menus [idMenu=" + idMenu + ", nombre=" + nombre + ", detalles=" + detalles + ", precio=" + precio
-				+ ", activo=" + activo + ", creado=" + creado + ", actualizado=" + actualizado + ", eliminado="
-				+ eliminado + "]";
+		return "Recetas [idReceta=" + idReceta + ", nombre=" + nombre + ", detalle=" + detalle + ", activa=" + activa
+				+ ", creado=" + creado + ", actualizado=" + actualizado + ", eliminado=" + eliminado + "]";
 	}
 
 }

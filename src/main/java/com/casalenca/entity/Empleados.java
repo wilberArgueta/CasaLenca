@@ -1,14 +1,12 @@
 package com.casalenca.entity;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "empleados")
@@ -18,51 +16,49 @@ public class Empleados {
 	@Column(name = "cod_empleado")
 	private char[] codEmpleado;
 
-	@Column(name = "nombre")
+	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "apellido")
+	@Column(name = "apellido", nullable = false)
 	private String apellido;
 
-	@Column(name = "dui")
-	private char[] dui;
+	@Column(name = "dui", nullable = false)
+	private String dui;
 
-	@Column(name = "f_nacimiento")
-	@Temporal(TemporalType.DATE)
-	private Date fechaNacimiento;
+	@Column(name = "f_nacimiento", nullable = false)
+	private LocalDate fechaNacimiento;
 
-	@Column(name = "direccion")
+	@Column(name = "direccion", nullable = false)
 	private String direccion;
 
-	@Column(name = "activo")
-	private boolean activo;
+	@Column(name = "telefono", nullable = false)
+	private String telefono;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date creado;
+	@Column(name = "activo", nullable = false)
+	private boolean activo = true;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date actualizado;
+	@Column(name = "creado", nullable = false)
+	private LocalDate creado = LocalDate.now();
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date eliminado;
+	@Column(name = "actualizado", nullable = false)
+	private LocalDate actualizado = LocalDate.now();
+
+	@Column(name = "eliminado")
+	private LocalDate eliminado;
 
 	public Empleados() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Empleados(char[] codEmpleado, String nombre, String apellido, char[] dui, Date fechaNacimiento,
-			String direccion, boolean activo, Date creado, Date actualizado, Date eliminado) {
-
+	public Empleados(char[] codEmpleado, String nombre, String apellido, String dui, LocalDate fechaNacimiento,
+			String direccion, String telefono) {
 		this.codEmpleado = codEmpleado;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dui = dui;
 		this.fechaNacimiento = fechaNacimiento;
 		this.direccion = direccion;
-		this.activo = activo;
-		this.creado = creado;
-		this.actualizado = actualizado;
-		this.eliminado = eliminado;
+		this.telefono = telefono;
 	}
 
 	public char[] getCodEmpleado() {
@@ -89,19 +85,19 @@ public class Empleados {
 		this.apellido = apellido;
 	}
 
-	public char[] getDui() {
+	public String getDui() {
 		return dui;
 	}
 
-	public void setDui(char[] dui) {
+	public void setDui(String dui) {
 		this.dui = dui;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -113,6 +109,14 @@ public class Empleados {
 		this.direccion = direccion;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public boolean isActivo() {
 		return activo;
 	}
@@ -121,36 +125,36 @@ public class Empleados {
 		this.activo = activo;
 	}
 
-	public Date getCreado() {
+	public LocalDate getCreado() {
 		return creado;
 	}
 
-	public void setCreado(Date creado) {
+	public void setCreado(LocalDate creado) {
 		this.creado = creado;
 	}
 
-	public Date getActualizado() {
+	public LocalDate getActualizado() {
 		return actualizado;
 	}
 
-	public void setActualizado(Date actualizado) {
+	public void setActualizado(LocalDate actualizado) {
 		this.actualizado = actualizado;
 	}
 
-	public Date getEliminado() {
+	public LocalDate getEliminado() {
 		return eliminado;
 	}
 
-	public void setEliminado(Date eliminado) {
+	public void setEliminado(LocalDate eliminado) {
 		this.eliminado = eliminado;
 	}
 
 	@Override
 	public String toString() {
-		return "EmpleadosModel [codEmpleado=" + Arrays.toString(codEmpleado) + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", dui=" + Arrays.toString(dui) + ", fechaNacimiento=" + fechaNacimiento + ", direccion="
-				+ direccion + ", activo=" + activo + ", creado=" + creado + ", actualizado=" + actualizado
-				+ ", eliminado=" + eliminado + "]";
+		return "Empleados [codEmpleado=" + Arrays.toString(codEmpleado) + ", nombre=" + nombre + ", apellido="
+				+ apellido + ", dui=" + dui + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion
+				+ ", telefono=" + telefono + ", activo=" + activo + ", creado=" + creado + ", actualizado="
+				+ actualizado + ", eliminado=" + eliminado + "]";
 	}
 
 }

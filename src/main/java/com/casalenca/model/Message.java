@@ -20,8 +20,8 @@ public class Message {
 		return status;
 	}
 
-	public void setStatus(HttpStatus accepted) {
-		this.status = accepted;
+	public void setStatus(HttpStatus status) {
+		this.status = status;
 	}
 
 	public String getMessage() {
@@ -30,6 +30,11 @@ public class Message {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [status=" + status + ", message=" + message + "]";
 	}
 
 }

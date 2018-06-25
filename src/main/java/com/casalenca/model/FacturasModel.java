@@ -1,24 +1,28 @@
 package com.casalenca.model;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 
 public class FacturasModel {
 
 	private int idFactura;
+
 	private char[] numFactura;
+
 	private char[] correlativoFactura;
-	private Date fechaFactura;
+
+	private LocalDate fechaFactura;
+
 	private int iva;
+
 	private String detalle;
 
 	public FacturasModel() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FacturasModel(int idFactura, char[] numFactura, char[] correlativoFactura, Date fechaFactura, int iva,
+	public FacturasModel(int idFactura, char[] numFactura, char[] correlativoFactura, LocalDate fechaFactura, int iva,
 			String detalle) {
-		super();
 		this.idFactura = idFactura;
 		this.numFactura = numFactura;
 		this.correlativoFactura = correlativoFactura;
@@ -51,11 +55,11 @@ public class FacturasModel {
 		this.correlativoFactura = correlativoFactura;
 	}
 
-	public Date getFechaFactura() {
+	public LocalDate getFechaFactura() {
 		return fechaFactura;
 	}
 
-	public void setFechaFactura(Date fechaFactura) {
+	public void setFechaFactura(LocalDate fechaFactura) {
 		this.fechaFactura = fechaFactura;
 	}
 

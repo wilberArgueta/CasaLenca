@@ -1,12 +1,13 @@
 package com.casalenca.entity;
 
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,17 +22,19 @@ public class Existencias {
 	@Column(name = "cantidad")
 	private int cantidad;
 
-	@Column(name = "cod_producto")
-	private char[] codProducto;
+
+	@OneToOne
+	@JoinColumn(name = "cod_producto")
+	private Productos productos;
 
 	public Existencias() {
 
 	}
 
-	public Existencias(int idExistencias, int cantidad, char[] codProducto) {
+	public Existencias(int idExistencias, int cantidad) {
 		this.idExistencias = idExistencias;
 		this.cantidad = cantidad;
-		this.codProducto = codProducto;
+
 	}
 
 	public int getIdExistencias() {
@@ -50,18 +53,21 @@ public class Existencias {
 		this.cantidad = cantidad;
 	}
 
-	public char[] getCodProducto() {
-		return codProducto;
+	public Productos getProductos() {
+		return productos;
 	}
 
-	public void setCodProducto(char[] codProducto) {
-		this.codProducto = codProducto;
+	public void setProductos(Productos productos) {
+		this.productos = productos;
 	}
 
 	@Override
 	public String toString() {
-		return "ExistenciasModel [idExistencias=" + idExistencias + ", cantidad=" + cantidad + ", codProducto="
-				+ Arrays.toString(codProducto) + "]";
+		return "Existencias [idExistencias=" + idExistencias + ", cantidad=" + cantidad + ", codProducto="
+				 + ", productos=" + productos + "]";
 	}
+	
+
+	
 
 }

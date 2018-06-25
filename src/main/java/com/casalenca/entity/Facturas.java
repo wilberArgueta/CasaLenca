@@ -1,12 +1,11 @@
 package com.casalenca.entity;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,18 +14,18 @@ import javax.persistence.Table;
 public class Facturas {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "id_factura")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFactura;
 
-	@Column(name = "num_factura")
+	@Column(name = "num_factura", nullable = false)
 	private char[] numFactura;
 
-	@Column(name = "correlativo_factura")
+	@Column(name = "correlativo_factura", nullable = false)
 	private char[] correlativoFactura;
 
-	@Column(name = "fecha_factura")
-	private Date fechaFactura;
+	@Column(name = "fecha_factura", nullable = false)
+	private LocalDate fechaFactura = LocalDate.now();
 
 	@Column(name = "iva")
 	private int iva;
@@ -38,7 +37,7 @@ public class Facturas {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Facturas(int idFactura, char[] numFactura, char[] correlativoFactura, Date fechaFactura, int iva,
+	public Facturas(int idFactura, char[] numFactura, char[] correlativoFactura, LocalDate fechaFactura, int iva,
 			String detalle) {
 		this.idFactura = idFactura;
 		this.numFactura = numFactura;
@@ -72,11 +71,11 @@ public class Facturas {
 		this.correlativoFactura = correlativoFactura;
 	}
 
-	public Date getFechaFactura() {
+	public LocalDate getFechaFactura() {
 		return fechaFactura;
 	}
 
-	public void setFechaFactura(Date fechaFactura) {
+	public void setFechaFactura(LocalDate fechaFactura) {
 		this.fechaFactura = fechaFactura;
 	}
 
