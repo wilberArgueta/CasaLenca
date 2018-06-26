@@ -1,5 +1,7 @@
 package com.casalenca.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,6 @@ public interface FacturaVentaRepository extends JpaRepository<FacturaVenta, Inte
 
 	public FacturaVenta findFacturaVentaById(int id);
 
-	public FacturaVenta findFacturaVentaByFactura(Facturas f);
+	public List<FacturaVenta> findFacturaVentaByFactura(Facturas f);
 
 }

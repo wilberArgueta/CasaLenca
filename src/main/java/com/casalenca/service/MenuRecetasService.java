@@ -69,9 +69,12 @@ public class MenuRecetasService {
 		return evc.EntityToModel(evr.findMenuRecetaById(id));
 	}
 
-	public MenuRecetasModel findMenuRecetaByMenu(MenusModel mm) {
+	public List<MenuRecetasModel> findMenuRecetaByMenu(MenusModel mm) {
+		List<MenuRecetasModel> mL = new ArrayList<>();
 
-		return evc.EntityToModel(evr.findMenuRecetaByMenu(mc.ModelToEntity(mm)));
+		evr.findMenuRecetaByMenu(mc.ModelToEntity(mm)).forEach(ss -> mL.add(evc.EntityToModel(ss)));
+
+		return mL;
 	}
 
 }

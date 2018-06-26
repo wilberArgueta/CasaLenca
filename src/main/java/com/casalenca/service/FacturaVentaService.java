@@ -69,9 +69,11 @@ public class FacturaVentaService {
 		return evc.EntityToModel(evr.findFacturaVentaById(id));
 	}
 
-	public FacturaVentaModel findFacturaVentaByFactura(FacturasModel fm) {
+	public List<FacturaVentaModel> findFacturaVentaByFactura(FacturasModel fm) {
 
-		return evc.EntityToModel(evr.findFacturaVentaByFactura(fc.ModelToEntity(fm)));
+		List<FacturaVentaModel> fL = new ArrayList<>();
+		evr.findFacturaVentaByFactura(fc.ModelToEntity(fm)).forEach(ss -> fL.add(evc.EntityToModel(ss)));
+		return fL;
 	}
 
 }

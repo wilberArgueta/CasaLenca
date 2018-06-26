@@ -6,5 +6,7 @@ import com.casalenca.entity.Recetas;
 
 @Repository("recetasRepository")
 public interface RecetasRepository extends JpaRepository<Recetas, Integer> {
+	
+	public Recetas findRecetaById(int id);
 
 }

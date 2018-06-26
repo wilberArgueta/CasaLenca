@@ -69,9 +69,13 @@ public class RecetaProductosService {
 		return evc.EntityToModel(evr.findRecetaProductosById(id));
 	}
 
-	public RecetaProductosModel findRecetaProductosByReceta(RecetasModel rm) {
+	public List<RecetaProductosModel> findRecetaProductosByReceta(RecetasModel rm) {
 
-		return evc.EntityToModel(evr.findRecetaProductosByReceta(rc.ModelToEntity(rm)));
+		List<RecetaProductosModel> rL = new ArrayList<>();
+
+		evr.findRecetaProductosByReceta(rc.ModelToEntity(null)).forEach(ss -> rL.add(evc.EntityToModel(ss)));
+
+		return rL;
 	}
 
 }

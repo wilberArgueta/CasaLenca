@@ -7,4 +7,6 @@ import com.casalenca.entity.Ventas;
 @Repository("ventasRepository")
 public interface VentasRepository extends JpaRepository<Ventas, Integer> {
 
+	public Ventas findVentasById(int id);
+
 }
